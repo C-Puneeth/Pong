@@ -18,7 +18,7 @@ player_2 = Paddle((350, 0))
 ball = Ball()
 line = Mid_Line()
 line.mline()
-Scoreboard = Scoreboard()
+scoreboard = Scoreboard()
 
 screen.listen()
 screen.onkey(player_1.up, "w")
@@ -41,11 +41,15 @@ while is_game_on:
 
     if ball.xcor() > 380:
         ball.update()
-        Scoreboard.lscore_1()
+        scoreboard.increase_score_1()
 
     if ball.xcor() < -380:
         ball.update()
-        Scoreboard.rscore_2()
+        scoreboard.increase_score_2()
 
+    try:
+        screen.update()
+    except:
+        is_game_on = False
 
 screen.exitonclick()

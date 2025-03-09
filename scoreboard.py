@@ -11,18 +11,18 @@ class Scoreboard(Turtle):
         self.score_2 = 0
         self.update_scoreboard()
 
-    def update_scoreboard(self):bbbbb
+    def update_scoreboard(self):
         self.goto(-100, 200)
         self.write(self.score_1, align="center", font=("Courier", 60, "normal"))
         self.goto(100, 200)
         self.write(self.score_2, align="center", font=("Courier", 60, "normal"))
 
-    def lscore_1(self):
+    def increase_score_1(self):
         self.score_1 += 1
         self.clear()
         self.update_scoreboard()
 
-    def rscore_2(self):
+    def increase_score_2(self):
         self.score_2 += 1
         self.clear()
         self.update_scoreboard()

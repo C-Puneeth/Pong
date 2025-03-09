@@ -1,5 +1,5 @@
 from turtle import Turtle
-
+import time
 
 class Ball(Turtle):
     def __init__(self):
@@ -12,6 +12,7 @@ class Ball(Turtle):
         self.x = 10
         self.y = 10
         self.move_speed = 0.1
+        self.last_bounce_time = time.time()
 
     def move(self):
         new_x = self.xcor() + self.x
@@ -22,10 +23,14 @@ class Ball(Turtle):
         self.y *= -1
 
     def bounce_x(self):
-        self.x *= -1
-        self.move_speed *= 0.8
+        current_time = time.time()
+        if current_time - self.last_bounce_time > 0.1:  # 0.1 second cooldown
+            self.x *= -1
+            self.move_speed *= 0.8
+            self.last_bounce_time = current_time
 
     def update(self):
         self.goto(0, 0)
         self.move_speed = 0.1
-        self.bounce_x()
+        self.x *= -1  # Ensure the ball changes direction when reset
+        self.y *= -1  # Ensure the ball changes direction when reset
